@@ -1,7 +1,9 @@
 package com.example.weatherapp.data
 
+import android.util.Log
 import com.google.gson.Gson
 import java.net.URL
+
 /**
  *
  * @author wzc
@@ -15,7 +17,8 @@ class ForecastRequest(private val zipCode: String) {
     }
 
     fun execute(): ForecastResult {
-        val forecastJsonStr = URL(COMPLETE_URL+zipCode).readText()
+        val forecastJsonStr = URL(COMPLETE_URL + zipCode).readText()
+        Log.d(javaClass.simpleName, "forecastJsonStr:" + forecastJsonStr)
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 }
