@@ -63,6 +63,7 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
     }
 
     interface OnItemClickListener {
+        // 函数调用 方法 a(i)，会调用的是 a.invoke(i)
         operator fun invoke(forecast: Forecast)
     }
 }
