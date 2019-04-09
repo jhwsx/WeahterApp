@@ -19,7 +19,7 @@ import org.jetbrains.anko.find
  * @date 2019/3/27
  */
 class ForecastListAdapter(private val weekForecast: ForecastList,
-                          private val itemClick: OnItemClickListener) :
+                          val itemClick: (Forecast) -> Unit) :
     RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastListAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.ctx).inflate(R.layout.item_forecast, parent,false)
@@ -33,7 +33,7 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
        holder.bindForecast(weekForecast[position])
     }
     // view 并不是一个属性，只是一个传参，所以前面没有 var，val
-    class ViewHolder(view: View, private val itemClick: OnItemClickListener) :
+    class ViewHolder(view: View,  val itemClick: (Forecast) -> Unit) :
         RecyclerView.ViewHolder(view) {
         private val iconView: ImageView
         private val dateView: TextView
@@ -62,10 +62,10 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
 
     }
 
-    interface OnItemClickListener {
-        // 函数调用 方法 a(i)，会调用的是 a.invoke(i), 也就是说可以使用一种简化的方式
-        operator fun invoke(forecast: Forecast)
-    }
+//    interface OnItemClickListener {
+//        // 函数调用 方法 a(i)，会调用的是 a.invoke(i), 也就是说可以使用一种简化的方式
+//        operator fun invoke(forecast: Forecast)
+//    }
 }
 
 /**

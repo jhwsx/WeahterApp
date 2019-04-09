@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.domain.commands.RequestForecastCommand
-import com.example.weatherapp.domain.model.Forecast
 import com.example.weatherapp.ui.adapter.ForecastListAdapter
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
@@ -22,15 +21,21 @@ class MainActivity : AppCompatActivity() {
         doAsync {
             val result = RequestForecastCommand("94043").execute()
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result,
-                    // 使用 object 关键字声明一个匿名对象，这里是一个接口，后面没有小括号
-                    object: ForecastListAdapter.OnItemClickListener {
-                        override fun invoke(forecast: Forecast) {
-                            toast(forecast.date)
-                        }
-                    })
+                //                forecastList.adapter = ForecastListAdapter(result,
+//                    // 使用 object 关键字声明一个匿名对象，这里是一个接口，后面没有小括号
+//                    object: ForecastListAdapter.OnItemClickListener {
+//                        override fun invoke(forecast: Forecast) {
+//                            toast(forecast.date)
+//                        }
+//                    })
+                forecastList.adapter =
+                    ForecastListAdapter(result) {  toast(it.date) }
             }
         }
+//        val button = find<Button>(R.id.button)
+//        button.setOnClickListener({view -> toast("hello")})
+//        button.setOnClickListener({toast("hello")})
+//        button.setOnClickListener {toast("hello kotlin1")}
     }
 }
 
