@@ -26,7 +26,7 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
         return ViewHolder(view, itemClick)
     }
 
-    override fun getItemCount(): Int = weekForecast.size()
+    override fun getItemCount() = weekForecast.size
 
 
     override fun onBindViewHolder(holder: ForecastListAdapter.ViewHolder, position: Int) {
