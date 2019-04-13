@@ -4,14 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.weatherapp.R
 import com.example.weatherapp.domain.model.Forecast
 import com.example.weatherapp.domain.model.ForecastList
 import com.example.weatherapp.ui.util.ctx
 import com.squareup.picasso.Picasso
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.item_forecast.view.*
 
 /**
  *
@@ -35,27 +33,33 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
     // view 并不是一个属性，只是一个传参，所以前面没有 var，val
     class ViewHolder(view: View,  val itemClick: (Forecast) -> Unit) :
         RecyclerView.ViewHolder(view) {
-        private val iconView: ImageView
-        private val dateView: TextView
-        private val descriptionView: TextView
-        private val maxTemperatureView: TextView
-        private val minTemperatureView: TextView
+//        private val iconView: ImageView
+//        private val dateView: TextView
+//        private val descriptionView: TextView
+//        private val maxTemperatureView: TextView
+//        private val minTemperatureView: TextView
         // init 代码块是为主构造器服务的，因为主构造器不能包含任何初始化语句
-        init {
-            iconView = itemView.find(R.id.icon)
-            dateView = itemView.find(R.id.date)
-            descriptionView = itemView.find(R.id.description)
-            maxTemperatureView = itemView.find(R.id.maxTemperature)
-            minTemperatureView = itemView.find(R.id.minTemperature)
-        }
+//        init {
+//            iconView = itemView.find(R.id.icon)
+//            dateView = itemView.find(R.id.date)
+//            descriptionView = itemView.find(R.id.description)
+//            maxTemperatureView = itemView.find(R.id.maxTemperature)
+//            minTemperatureView = itemView.find(R.id.minTemperature)
+//        }
 
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
-                dateView.text = date
-                descriptionView.text = description
-                maxTemperatureView.text = high.toString()
-                minTemperatureView.text = low.toString()
-                Picasso.with(itemView.ctx).load(iconUrl).into(iconView)
+//                dateView.text = date
+//                descriptionView.text = description
+//                maxTemperatureView.text = high.toString()
+//                minTemperatureView.text = low.toString()
+//                Picasso.with(itemView.ctx).load(iconUrl).into(iconView)
+                // 使用 kotlin android extensions，省去了 findViewById 的操作。
+                itemView.date.text = date
+                itemView.description.text = description
+                itemView.maxTemperature.text = high.toString()
+                itemView.minTemperature.text = low.toString()
+                Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
