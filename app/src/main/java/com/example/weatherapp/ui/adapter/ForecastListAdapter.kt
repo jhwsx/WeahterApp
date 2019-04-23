@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_forecast.view.*
  * @date 2019/3/27
  */
 class ForecastListAdapter(private val weekForecast: ForecastList,
-                          val itemClick: (Forecast) -> Unit) :
+                          val itemClick: (Forecast) -> Unit) : // itemClick 是一个函数，它接收一个 Forecast 对象，但不返回任何东西。括号里边是参数，箭头右边是返回值。
     RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastListAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.ctx).inflate(R.layout.item_forecast, parent,false)
