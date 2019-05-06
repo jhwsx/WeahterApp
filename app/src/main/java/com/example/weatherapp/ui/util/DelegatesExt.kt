@@ -44,4 +44,5 @@ else throw IllegalStateException("${property.name} already initialized")
 }
  * 2, 这里是一个自定义的委托：
  * val 属性实现 ReadOnlyProperty 接口，var 属性实现 ReadWriteProperty 接口。
+ * 3, 当使用 instance 的 setter 和 getter 的时候，属性委托的 setValue 和 getValue 就会被调用
  * */
