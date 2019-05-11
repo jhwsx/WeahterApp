@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.db
 
+import com.example.weatherapp.domain.datasource.ForecastDatasource
 import com.example.weatherapp.domain.model.ForecastList
 import com.example.weatherapp.extension.clear
 import com.example.weatherapp.extension.parseList
@@ -15,12 +16,11 @@ import org.jetbrains.anko.db.select
  */
 class ForecastDb(
     private val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.instance,
-    private val dataMapper: DbDataMapper = DbDataMapper()
-) { // 这里使用默认参数的方式，实现简单的依赖注入
+    private val dataMapper: DbDataMapper = DbDataMapper()) : ForecastDatasource { // 这里使用默认参数的方式，实现简单的依赖注入
     /**
      * 根据 zipCode，从数据库中获取 ForecastList 对象
      */
-    fun requestForecastByZipCode(zipCode: Long, date: Long) = forecastDbHelper.use {
+    override fun requestForecastByZipCode(zipCode: Long, date: Long) = forecastDbHelper.use {
         val dailyRequest = "${DayForecastTable.CITY_ID} = ? AND ${DayForecastTable.DATE} >= ?"
         val dailyForecast = select(DayForecastTable.NAME)
             .whereSimple(dailyRequest, zipCode.toString(), date.toString())

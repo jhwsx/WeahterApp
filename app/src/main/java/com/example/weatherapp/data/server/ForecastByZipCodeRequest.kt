@@ -9,7 +9,7 @@ import java.net.URL
  * @author wzc
  * @date 2019/4/1
  */
-class ForecastRequest(private val zipCode: Long) {
+class ForecastByZipCodeRequest(private val zipCode: Long, val gson: Gson = Gson()) {
     companion object {
         private const val APP_ID = "15646a06818f61f7b8d7823ca833e1ce"
         private const val URL = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&units=metric&cnt=7"
@@ -19,7 +19,7 @@ class ForecastRequest(private val zipCode: Long) {
     fun execute(): ForecastResult {
         val forecastJsonStr = URL(COMPLETE_URL + zipCode).readText()
         Log.d(javaClass.simpleName, "forecastJsonStr:" + forecastJsonStr)
-        return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
+        return gson.fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 }
 
