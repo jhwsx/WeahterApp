@@ -6,7 +6,7 @@ import com.example.weatherapp.ui.App
 import org.jetbrains.anko.db.*
 
 /**
- *
+ * 天气数据库辅助类，负责数据库的创建和升级
  * @author wzc
  * @date 2019/5/6
  */

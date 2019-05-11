@@ -1,15 +1,15 @@
-package com.example.weatherapp.data
+package com.example.weatherapp.data.server
 
 import android.util.Log
 import com.google.gson.Gson
 import java.net.URL
 
 /**
- *
+ * 天气请求类
  * @author wzc
  * @date 2019/4/1
  */
-class ForecastRequest(private val zipCode: String) {
+class ForecastRequest(private val zipCode: Long) {
     companion object {
         private const val APP_ID = "15646a06818f61f7b8d7823ca833e1ce"
         private const val URL = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&units=metric&cnt=7"

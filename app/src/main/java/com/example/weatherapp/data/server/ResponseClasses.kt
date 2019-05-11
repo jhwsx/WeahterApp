@@ -1,7 +1,7 @@
-package com.example.weatherapp.data
+package com.example.weatherapp.data.server
 
 /**
- *
+ * json 对应的对象类
  * @author wzc
  * @date 2019/3/30
  */

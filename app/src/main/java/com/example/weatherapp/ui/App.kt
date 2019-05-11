@@ -1,7 +1,7 @@
 package com.example.weatherapp.ui
 
 import android.app.Application
-import com.example.weatherapp.ui.util.DelegatesExt
+import com.example.weatherapp.extension.DelegatesExt
 
 /**
  *

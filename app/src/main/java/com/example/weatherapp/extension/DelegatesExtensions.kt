@@ -1,15 +1,16 @@
-package com.example.weatherapp.ui.util
+package com.example.weatherapp.extension
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 /**
- *
+ * 委托类
  * @author wzc
  * @date 2019/4/24
  */
 object DelegatesExt {
-    fun <T> notNullSingleValue(): ReadWriteProperty<Any?, T> = NotNullSingleValueVar()
+    fun <T> notNullSingleValue(): ReadWriteProperty<Any?, T> =
+        NotNullSingleValueVar()
 }
 
 class NotNullSingleValueVar<T>() : ReadWriteProperty<Any?, T> {

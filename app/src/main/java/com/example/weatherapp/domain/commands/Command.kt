@@ -1,7 +1,7 @@
 package com.example.weatherapp.domain.commands
 
 /**
- *
+ * 指挥接口
  * @author wzc
  * @date 2019/4/1
  */

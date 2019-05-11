@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 //        val forecastList = findViewById<RecyclerView>(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this) // 布局中的 id 也使用驼峰命名，这样外部的 java 类名才会符合规范。
         doAsync {
-            val result = RequestForecastCommand("94043").execute()
+            val result = RequestForecastCommand(94043L).execute()
             uiThread {
                 //                forecastList.adapter = ForecastListAdapter(result,
 //                    // 使用 object 关键字声明一个匿名对象，这里是一个接口，后面没有小括号
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //                        }
 //                    })
                 forecastList.adapter =
-                    ForecastListAdapter(result) {  toast(it.date) }
+                    ForecastListAdapter(result) {  toast(it.description) }
             }
         }
 //        val button = find<Button>(R.id.button)

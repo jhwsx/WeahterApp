@@ -1,7 +1,7 @@
 package com.example.weatherapp.data.db
 
 /**
- *
+ * 数据库表字段类
  * @author wzc
  * @date 2019/5/6
  */
