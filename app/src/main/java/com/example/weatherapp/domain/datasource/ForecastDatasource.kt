@@ -1,5 +1,6 @@
 package com.example.weatherapp.domain.datasource
 
+import com.example.weatherapp.domain.model.Forecast
 import com.example.weatherapp.domain.model.ForecastList
 
 /**
@@ -9,4 +10,6 @@ import com.example.weatherapp.domain.model.ForecastList
  */
 interface ForecastDatasource {
     fun requestForecastByZipCode(zipCode: Long, date: Long): ForecastList?
+
+    fun requestDayForecast(id: Long): Forecast?
 }

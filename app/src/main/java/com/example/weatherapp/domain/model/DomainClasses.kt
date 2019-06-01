@@ -13,4 +13,4 @@ data class ForecastList(val id: Long, val city: String, val country: String, val
         get() = dailyForecast.size // 这一种写法和上面的写法，都没有声明一个 size 字段，只有一个 getter 方法而已。不同之处是引用方式的不同，上面的是对象.size(), 下面的是对象.size。
 }
 
-data class Forecast(val date: Long, val description: String, val high: Int, val low: Int, val iconUrl: String)
+data class Forecast(val id: Long, val date: Long, val description: String, val high: Int, val low: Int, val iconUrl: String)

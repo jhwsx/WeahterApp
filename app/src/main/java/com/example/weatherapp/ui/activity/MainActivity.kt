@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.weatherapp.R
 import com.example.weatherapp.domain.commands.RequestForecastCommand
 import com.example.weatherapp.ui.adapter.ForecastListAdapter
-import kotlinx.android.synthetic.main.activity_main.* // 这里使用了 kotlin Android extensions
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +29,11 @@ class MainActivity : AppCompatActivity() {
 //                        }
 //                    })
                 forecastList.adapter =
-                    ForecastListAdapter(result) {  toast(it.description) }
+                    ForecastListAdapter(result) {
+//                        toast(it.description)
+                        startActivity<DetailActivity>(DetailActivity.ID to it.id,
+                            DetailActivity.CITY_NAME to result.city)
+                    }
             }
         }
 //        val button = find<Button>(R.id.button)

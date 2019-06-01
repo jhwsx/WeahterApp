@@ -1,6 +1,7 @@
 package com.example.weatherapp.extension
 
 import android.database.sqlite.SQLiteDatabase
+import com.example.weatherapp.data.db.DayForecastTable
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.SelectQueryBuilder
 
@@ -22,6 +23,8 @@ fun <T: Any> SelectQueryBuilder.parseOpt(parser: (Map<String, Any?>) -> T):T? =
 fun SQLiteDatabase.clear(tableName: String) {
     execSQL("delete from $tableName")
 }
+
+fun SelectQueryBuilder.byId(id: Long) = whereSimple("${DayForecastTable.ID} = ?", id.toString())
 
 /**
  * 总结：

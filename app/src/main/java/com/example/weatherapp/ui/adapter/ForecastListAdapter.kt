@@ -8,10 +8,9 @@ import com.example.weatherapp.R
 import com.example.weatherapp.domain.model.Forecast
 import com.example.weatherapp.domain.model.ForecastList
 import com.example.weatherapp.extension.ctx
+import com.example.weatherapp.extension.toDateString
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_forecast.view.*
-import java.text.DateFormat
-import java.util.*
 
 /**
  *
@@ -57,18 +56,13 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
 //                minTemperatureView.text = low.toString()
 //                Picasso.with(itemView.ctx).load(iconUrl).into(iconView)
                 // 使用 kotlin android extensions，省去了 findViewById 的操作。
-                itemView.date.text = convertDate(date)
+                itemView.date.text = date.toDateString()
                 itemView.description.text = description
                 itemView.maxTemperature.text = high.toString()
                 itemView.minTemperature.text = low.toString()
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
                 itemView.setOnClickListener { itemClick(this) }
             }
-        }
-
-        private fun convertDate(date: Long): String {
-            val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
-            return df.format(date)
         }
 
     }
