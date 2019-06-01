@@ -3,21 +3,28 @@ package com.example.weatherapp.ui.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import com.example.weatherapp.R
 import com.example.weatherapp.domain.commands.RequestForecastCommand
 import com.example.weatherapp.ui.adapter.ForecastListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ToolbarManager {
+
+    override val toolbar by lazy { find<Toolbar>(R.id.toolbar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initToolbar()
+        setSupportActionBar(toolbar)
 //        val forecastList = findViewById<RecyclerView>(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this) // 布局中的 id 也使用驼峰命名，这样外部的 java 类名才会符合规范。
+        attachToScroll(forecastList)
         doAsync {
             val result = RequestForecastCommand(94043L).execute()
             uiThread {
@@ -34,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity<DetailActivity>(DetailActivity.ID to it.id,
                             DetailActivity.CITY_NAME to result.city)
                     }
+                toolbarTitle = "${result.city} ${result.country}"
             }
         }
 //        val button = find<Button>(R.id.button)
